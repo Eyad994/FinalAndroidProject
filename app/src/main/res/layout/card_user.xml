@@ -1,0 +1,47 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="30dp"
+    app:cardElevation="2dp"
+    app:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/lightBlack"
+        android:gravity="center"
+        android:padding="1dp">
+
+        <!--<ImageView
+            android:id="@+id/image_provider"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginEnd="130dp"
+            android:src="@mipmap/logo_noshadow"/>-->
+
+        <TextView
+            android:id="@+id/tvProviderName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Creator Name"
+            android:textColor="@color/gold"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gold"
+            android:text="Time:"/>
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gold"
+            android:text="Time:"/>
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -19,8 +19,8 @@ public interface JsonPlaceHolder {
     /*@GET("user")
     Call<List<User>> getUser();*/
 
-    @GET("reserve/{id}")
-    Call<ResponseBody> getReservation(@Path("id") int userId);
+    @GET("getReserves/{id}")
+    Call<List<Reserves>> getReservation(@Path("id") String userId);
 
     @GET("auth/user")
     Call<ResponseBody> getUser(@Header("Authorization") String header);

@@ -6,5 +6,9 @@
     <color name="white">#FFFFFF</color>
     <color name="gray">#5b5b5b</color>
     <color name="red">#F10A59</color>
+    <color name="lightWhite">#6D6868</color>
+    <color name="lightBlack">#272626</color>
+    <color name="black">#0C0C0C</color>
+    <color name="gold">#d4af37</color>
 
 </resources>

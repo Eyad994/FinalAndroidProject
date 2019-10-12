@@ -79,7 +79,7 @@ public class SplashActivity extends AppCompatActivity {
                         {
                             getUserDetails();
                             Toast.makeText(SplashActivity.this, "Welcome Mr/Ms: "+ pref.getString("name", null), Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(SplashActivity.this, MapsActivity.class));
+                            startActivity(new Intent(SplashActivity.this, UserActivity.class));
                         } else {
                             startActivity(new Intent(SplashActivity.this, MainActivity.class));
                         }
@@ -90,7 +90,6 @@ public class SplashActivity extends AppCompatActivity {
 
                     }
                 });
-
 
             }
 

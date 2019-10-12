@@ -27,6 +27,16 @@ public class Reserves {
     @Expose
     private Double longitude;
 
+    public Reserves(String name, String email, String time, String date, Integer providerId, Double latitude, Double longitude) {
+        this.name = name;
+        this.email = email;
+        this.time = time;
+        this.date = date;
+        this.providerId = providerId;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
     public String getName() {
         return name;
     }
