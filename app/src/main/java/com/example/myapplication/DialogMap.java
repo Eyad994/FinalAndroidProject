@@ -78,7 +78,7 @@ public class DialogMap extends AppCompatDialogFragment {
         try {
             listener = (ExampleDialogListener) context;
         } catch (Exception e) {
-            throw new ClassCastException(context.toString() + "must implement ExampleDialogListener");
+            throw new ClassCastException(context.toString() + "must implement ExampleDialogListener  "+ e.getMessage());
         }
     }
 
@@ -135,5 +135,4 @@ public class DialogMap extends AppCompatDialogFragment {
                 }, mHour, mMinute, false);
         timePickerDialog.show();
     }
-
 }

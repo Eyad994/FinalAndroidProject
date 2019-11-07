@@ -28,6 +28,9 @@ public interface JsonPlaceHolder {
     @GET("getProviders")
     Call<List<Provider>> getLatLng();
 
+    @GET("deleteReserve/{id}")
+    Call<ResponseBody> deleteReserve(@Path("id") String reserveId);
+
     @FormUrlEncoded
     @POST("auth/login")
     Call<ResponseBody> loginPost(

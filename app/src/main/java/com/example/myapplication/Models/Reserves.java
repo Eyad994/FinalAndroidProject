@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Reserves {
 
+    @SerializedName("id")
+    @Expose
+    private Integer id;
     @SerializedName("name")
     @Expose
     private String name;
@@ -27,7 +30,7 @@ public class Reserves {
     @Expose
     private Double longitude;
 
-    public Reserves(String name, String email, String time, String date, Integer providerId, Double latitude, Double longitude) {
+    public Reserves(Integer id ,String name, String email, String time, String date, Integer providerId, Double latitude, Double longitude) {
         this.name = name;
         this.email = email;
         this.time = time;
@@ -35,6 +38,15 @@ public class Reserves {
         this.providerId = providerId;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {

@@ -1,15 +1,25 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorAccent">#008577</item>
         <item name="dialogCornerRadius">10dp</item>
+    </style>
+
+    <style name="buttonEdit" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:radius">6dp</item>
+        <item name="android:startColor">@color/colorPrimary</item>
+        <item name="android:endColor">#35a4b6</item>
+        <item name="android:angle">90</item>
+        <item name="android:width">0dp</item>
+        <item name="android:background">@color/colorAccent</item>
     </style>
 
 </resources>
