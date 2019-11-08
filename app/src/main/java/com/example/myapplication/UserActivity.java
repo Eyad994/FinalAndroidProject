@@ -80,8 +80,9 @@ public class UserActivity extends AppCompatActivity implements DialogMap.Example
                     Integer provider_id = reserve.getProviderId();
                     double latitude = reserve.getLatitude();
                     double longitude = reserve.getLongitude();
+                    Integer approved = reserve.getApproved();
 
-                    mReserveList.add(new Reserves(id ,providerName, email, time, date, provider_id, latitude, longitude));
+                    mReserveList.add(new Reserves(id ,providerName, email, time, date, provider_id, latitude, longitude, approved));
                 }
 
                 mReserveAdapter = new ReserveAdapter(UserActivity.this, mReserveList);

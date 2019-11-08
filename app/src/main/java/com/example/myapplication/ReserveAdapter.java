@@ -66,6 +66,19 @@ public class ReserveAdapter extends RecyclerView.Adapter<ReserveAdapter.ReserveV
         holder.mTextViewTime.setText(time);
         holder.mTextViewDate.setText(date);
 
+        if (currentItem.getApproved() == 2) {
+            holder.mTextViewApproved.setText("Approved");
+            holder.mTextViewApproved.setTextColor(Color.GREEN);
+        }
+        if (currentItem.getApproved() == 1) {
+            holder.mTextViewApproved.setText("Disapproved");
+            holder.mTextViewApproved.setTextColor(Color.RED);
+        }
+        if (currentItem.getApproved() == 0){
+            holder.mTextViewApproved.setText("Pending");
+            holder.mTextViewApproved.setTextColor(Color.BLUE);
+        }
+
         holder.directions.setOnClickListener(v -> {
             v.startAnimation(AnimationUtils.loadAnimation(mContext, R.anim.image_click));
             //Toast.makeText(mContext, "providerId: "+currentItem.getId(), Toast.LENGTH_SHORT).show();
@@ -120,6 +133,8 @@ public class ReserveAdapter extends RecyclerView.Adapter<ReserveAdapter.ReserveV
         public TextView mTextViewDate;
         public Button edit,delete;
         public ImageView directions;
+        public TextView mTextViewApproved;
+
 
         public ReserveViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -130,6 +145,7 @@ public class ReserveAdapter extends RecyclerView.Adapter<ReserveAdapter.ReserveV
             edit = itemView.findViewById(R.id.btnEdit);
             delete = itemView.findViewById(R.id.btnDelete);
             directions = itemView.findViewById(R.id.directions);
+            mTextViewApproved = itemView.findViewById(R.id.tvApproved);
 
         }
     }

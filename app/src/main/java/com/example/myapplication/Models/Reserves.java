@@ -29,8 +29,11 @@ public class Reserves {
     @SerializedName("longitude")
     @Expose
     private Double longitude;
+    @SerializedName("approved")
+    @Expose
+    private Integer approved;
 
-    public Reserves(Integer id ,String name, String email, String time, String date, Integer providerId, Double latitude, Double longitude) {
+    public Reserves(Integer id ,String name, String email, String time, String date, Integer providerId, Double latitude, Double longitude, Integer approved) {
         this.name = name;
         this.email = email;
         this.time = time;
@@ -39,6 +42,7 @@ public class Reserves {
         this.latitude = latitude;
         this.longitude = longitude;
         this.id = id;
+        this.approved = approved;
     }
 
     public Integer getId() {
@@ -105,4 +109,11 @@ public class Reserves {
         this.longitude = longitude;
     }
 
+    public Integer getApproved() {
+        return approved;
+    }
+
+    public void setApproved(Integer approved) {
+        this.approved = approved;
+    }
 }
