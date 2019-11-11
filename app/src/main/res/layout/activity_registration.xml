@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/background"
-    tools:context="com.example.myapplication.MapsActivity">
+    tools:context="com.example.myapplication.Activitys.MapsActivity">
 
     <ScrollView
         android:layout_width="match_parent"

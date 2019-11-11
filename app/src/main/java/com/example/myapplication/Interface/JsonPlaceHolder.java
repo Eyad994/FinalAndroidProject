@@ -1,6 +1,7 @@
 package com.example.myapplication.Interface;
 
 import com.example.myapplication.Models.Provider;
+import com.example.myapplication.Models.ProviderReserves;
 import com.example.myapplication.Models.Reserves;
 
 import java.util.List;
@@ -22,11 +23,17 @@ public interface JsonPlaceHolder {
     @GET("getReserves/{id}")
     Call<List<Reserves>> getReservation(@Path("id") String userId);
 
+    @GET("getUsersReserves/{id}")
+    Call<List<ProviderReserves>> getUsersReserves(@Path("id") String providerId);
+
     @GET("auth/user")
     Call<ResponseBody> getUser(@Header("Authorization") String header);
 
     @GET("getProviders")
     Call<List<Provider>> getLatLng();
+
+    @GET("send")
+    Call<ResponseBody> send();
 
     @GET("deleteReserve/{id}")
     Call<ResponseBody> deleteReserve(@Path("id") String reserveId);

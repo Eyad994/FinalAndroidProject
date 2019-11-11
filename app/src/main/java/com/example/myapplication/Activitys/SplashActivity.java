@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Activitys;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,6 +15,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.Interface.JsonPlaceHolder;
+import com.example.myapplication.R;
+import com.example.myapplication.UserActivity;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -49,6 +52,9 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_scr);
         init();
 
+        editor.putString("firebaseToken", FirebaseInstanceId.getInstance().getToken());
+        editor.apply();
+
         logoSplash.startAnimation(anim1);
         anim1.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -75,11 +81,17 @@ public class SplashActivity extends AppCompatActivity {
                         chmaraTech.setVisibility(View.VISIBLE);
 
                         finish();
-                        if (pref.getString("accessToken", null) != null)
-                        {
+                        if (pref.getString("accessToken", null) != null) {
                             getUserDetails();
-                            Toast.makeText(SplashActivity.this, "Welcome Mr/Ms: "+ pref.getString("name", null), Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(SplashActivity.this, UserActivity.class));
+                            String is_provider = pref.getString("is_provider", null);
+
+                            assert is_provider != null;
+                            if (is_provider.equals("1")) {
+                                startActivity(new Intent(SplashActivity.this, ProviderActivity.class));
+                            } else {
+                                startActivity(new Intent(SplashActivity.this, UserActivity.class));
+                            }
+
                         } else {
                             startActivity(new Intent(SplashActivity.this, MainActivity.class));
                         }
@@ -110,7 +122,7 @@ public class SplashActivity extends AppCompatActivity {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
                 if (!response.isSuccessful()) {
-                    Log.d(TAG, "onResponse: "+ response.code());
+                    Log.d(TAG, "onResponse: " + response.code());
                     Toast.makeText(SplashActivity.this, "Code: " + response.code(), Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -141,7 +153,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
 
-    private void init(){
+    private void init() {
 
         Gson gson = new GsonBuilder()
                 .setLenient()

@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Activitys;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,9 +11,12 @@ import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
 
+import com.example.myapplication.DialogMap;
 import com.example.myapplication.Interface.JsonPlaceHolder;
 import com.example.myapplication.Models.Provider;
+import com.example.myapplication.R;
 import com.example.myapplication.RetrofitClient.RetrofitClient;
+import com.example.myapplication.UserActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
