@@ -89,7 +89,7 @@ public class SplashActivity extends AppCompatActivity {
                             if (is_provider.equals("1")) {
                                 startActivity(new Intent(SplashActivity.this, ProviderActivity.class));
                             } else {
-                                startActivity(new Intent(SplashActivity.this, UserActivity.class));
+                                startActivity(new Intent(SplashActivity.this, MapsActivity.class));
                             }
 
                         } else {

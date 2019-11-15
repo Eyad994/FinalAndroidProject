@@ -2,6 +2,7 @@ package com.example.myapplication.Adapters;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,15 +53,16 @@ public class ProviderAdapter extends RecyclerView.Adapter<ProviderAdapter.Reserv
             holder.btnApprove.setVisibility(View.VISIBLE);
             holder.btnDecline.setVisibility(View.VISIBLE);
         }
-        holder.btnApprove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, pref.getString("firebaseToken", null), Toast.LENGTH_SHORT).show();
-                ((ProviderActivity) mContext).sendNotification();
-                /*mReserveList.clear();
-                ((ProviderActivity) mContext).getReservation();
-                notifyDataSetChanged();*/
-            }
+        holder.btnApprove.setOnClickListener(v -> {
+
+            ((ProviderActivity) mContext).sendAcceptNotification(currentItem.getId());
+            /*mReserveList.clear();
+            ((ProviderActivity) mContext).getReservation();
+            notifyDataSetChanged();*/
+        });
+
+        holder.btnDecline.setOnClickListener(v -> {
+            ((ProviderActivity) mContext).sendDeclineNotification(currentItem.getId());
         });
         //Toast.makeText(mContext, ""+pref.getString("name", null), Toast.LENGTH_SHORT).show();
     }

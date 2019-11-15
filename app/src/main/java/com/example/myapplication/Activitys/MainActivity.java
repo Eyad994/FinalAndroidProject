@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -68,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
         login = findViewById(R.id.btnSignIn);
         signup = findViewById(R.id.btnSignUp);
         incorrect = findViewById(R.id.tvIncorrectPass);
+        pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        editor = pref.edit();
 
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
@@ -145,9 +149,32 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 try {
+                    assert response.body() != null;
                     Jobject = new JSONObject(response.body().string());
+                    if (response.code() == 200) {
+                        try {
+                            editor.putString("accessToken", Jobject.getString("access_token"));
+                            editor.commit();
+                        } catch (JSONException e) {
+                            e.getMessage();
+                        }
+
+                        getUserDetails();
+
+                    /*if (is_provider.equals("1"))
+                    {
+                        finish();
+                        startActivity(new Intent(MainActivity.this, ProviderActivity.class));
+                    }
+                    else {
+                        finish();
+                        startActivity(new Intent(MainActivity.this, MapsActivity.class));
+                    }*/
+
+                    }
+
                 } catch (JSONException | IOException e) {
-                    e.printStackTrace();
+                    e.getMessage();
                 }
 
                 /*try {
@@ -156,20 +183,6 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }*/
 
-
-                if (response.code() == 200) {
-                    try {
-                        editor.putString("accessToken", Jobject.getString("access_token"));
-                        editor.commit();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    getUserDetails();
-
-                    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
-                    startActivity(intent);
-                }
                 //Toast.makeText(MainActivity.this,  " response code: "+ response.code(), Toast.LENGTH_SHORT).show();
 
             }
@@ -192,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
                 if (!response.isSuccessful()) {
                     //Toast.makeText(MainActivity.this, "Code: " + response.code(), Toast.LENGTH_LONG).show();
                     incorrect.setVisibility(View.VISIBLE);
+                    Log.d(TAG, "onResponse: "+ response.code());
                     return;
                 }
 
@@ -203,10 +217,17 @@ public class MainActivity extends AppCompatActivity {
                     editor.putString("is_provider", Jobject.getString("is_provider"));
                     editor.commit();
 
-                    /*if (Jobject.getInt("is_provider") == 1) {
-                        Toast.makeText(MainActivity.this, "Provider", Toast.LENGTH_SHORT).show();
-                    } else
-                        Toast.makeText(MainActivity.this, "User", Toast.LENGTH_SHORT).show();*/
+                    Log.d(TAG, "onResponse: "+pref.getString("is_provider", null));
+
+                    if (Jobject.getInt("is_provider") == 1) {
+                        finish();
+                        startActivity(new Intent(MainActivity.this, ProviderActivity.class));
+                    }
+                    if (Jobject.getInt("is_provider") == 0) {
+                        finish();
+                        startActivity(new Intent(MainActivity.this, MapsActivity.class));
+                    }
+
 
                 } catch (JSONException | IOException e) {
                     e.printStackTrace();

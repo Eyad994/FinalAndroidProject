@@ -96,9 +96,31 @@ public class ProviderActivity extends AppCompatActivity {
 
     }
 
-    public void sendNotification()
+    public void sendAcceptNotification(Integer id)
     {
-        Call<ResponseBody> call = jsonPlaceHolder.send();
+        Call<ResponseBody> call = jsonPlaceHolder.sendAccept(id);
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if (!response.isSuccessful()) {
+                    Log.d(TAG, "onResponse: "+ response.code());
+                    return;
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void sendDeclineNotification(Integer id)
+    {
+        Call<ResponseBody> call = jsonPlaceHolder.sendDecline(id);
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override

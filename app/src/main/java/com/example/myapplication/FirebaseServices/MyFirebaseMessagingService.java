@@ -3,7 +3,7 @@ package com.example.myapplication.FirebaseServices;
 import android.content.Intent;
 import android.util.Log;
 
-import com.example.myapplication.Activitys.MainActivity;
+import com.example.myapplication.Activitys.SplashActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -28,9 +28,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
     }
 
-    //this method will display the notification
-    //We are passing the JSONObject that is received from
-    //firebase cloud messaging
     private void sendPushNotification(JSONObject json) {
         //optionally we can display the json into log
         Log.e(TAG, "Notification JSON " + json.toString());
@@ -47,7 +44,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             MyNotificationManager mNotificationManager = new MyNotificationManager(getApplicationContext());
 
             //creating an intent for the notification
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(), SplashActivity.class);
 
             //if there is no image
             if(imageUrl.equals("null")){

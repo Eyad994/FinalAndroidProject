@@ -84,14 +84,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         switch (position) {
                             case 0:
                                 Toast.makeText(MapsActivity.this, "1", Toast.LENGTH_SHORT).show();
-                                getAllProviders();
                                 break;
                             case 1:
                                 Toast.makeText(MapsActivity.this, "2", Toast.LENGTH_SHORT).show();
                                 mMap.clear();
                                 break;
                             case 2:
-                                Toast.makeText(MapsActivity.this, "" + pref.getString("accessToken", null), Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(MapsActivity.this, UserActivity.class));
                                 break;
 
                             default:
@@ -156,17 +155,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         BitmapDrawable bitmapDrawable = (BitmapDrawable) getResources().getDrawable(R.drawable.scissor);
         Bitmap bitmap = bitmapDrawable.getBitmap();
         Bitmap smallIcon = Bitmap.createScaledBitmap(bitmap, 100, 100, false);
-        // Bitmap testMethod = resizeImage(getApplicationContext(), R.drawable.scissor,100,100);
-        LatLng sydney = new LatLng(31.902765, 35.889524);
-        LatLng amman = new LatLng(31.904623, 35.887657);
         LatLng AmmanCenter = new LatLng(31.953838, 35.910577);
+        // Bitmap testMethod = resizeImage(getApplicationContext(), R.drawable.scissor,100,100);
+        /*LatLng sydney = new LatLng(31.902765, 35.889524);
+        LatLng amman = new LatLng(31.904623, 35.887657);
         // mMap.clear();
         mMap.addMarker(new MarkerOptions().position(AmmanCenter).title("Amman Center")).setAlpha(0.0f);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"))
                 //  .setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
                 .setIcon(BitmapDescriptorFactory.fromBitmap(smallIcon));
-        mMap.addMarker(new MarkerOptions().position(amman).title("Marker in Amman"));
+        mMap.addMarker(new MarkerOptions().position(amman).title("Marker in Amman"));*/
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(AmmanCenter, 12));
+
+        getAllProviders();
 
         mMap.setOnMarkerClickListener(marker -> {
 

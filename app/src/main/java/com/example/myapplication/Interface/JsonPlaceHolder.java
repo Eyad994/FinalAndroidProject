@@ -32,8 +32,11 @@ public interface JsonPlaceHolder {
     @GET("getProviders")
     Call<List<Provider>> getLatLng();
 
-    @GET("send")
-    Call<ResponseBody> send();
+    @GET("sendAccept/{id}")
+    Call<ResponseBody> sendAccept(@Path("id") Integer id);
+
+    @GET("sendDecline/{id}")
+    Call<ResponseBody> sendDecline(@Path("id") Integer id);
 
     @GET("deleteReserve/{id}")
     Call<ResponseBody> deleteReserve(@Path("id") String reserveId);
