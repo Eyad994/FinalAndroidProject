@@ -12,6 +12,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -46,6 +47,16 @@ public interface JsonPlaceHolder {
     Call<ResponseBody> loginPost(
             @Field("email") String email,
             @Field("password") String password
+    );
+
+    @FormUrlEncoded
+    @POST("auth/signup")
+    Call<ResponseBody> register(
+            @Field("email") String email,
+            @Field("password") String password,
+            @Field("password_confirmation") String passwordConfirmation,
+            @Field("name") String userName,
+            @Field("device_token") String deviceToken
     );
 
     @FormUrlEncoded

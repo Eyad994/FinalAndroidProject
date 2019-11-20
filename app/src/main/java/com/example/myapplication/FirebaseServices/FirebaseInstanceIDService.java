@@ -1,5 +1,6 @@
 package com.example.myapplication.FirebaseServices;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -10,6 +11,7 @@ import com.google.firebase.messaging.RemoteMessage;
 public class FirebaseInstanceIDService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseIIDService";
+    private SharedPreferences pref;
 
     @Override
     public void onNewToken(String s) {

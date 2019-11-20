@@ -22,7 +22,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activitys.ProviderActivity"></activity>
+        <activity android:name=".Activitys.RegisterActivity"></activity>
+        <activity android:name=".Activitys.ProviderActivity" />
         <activity android:name=".UserActivity" />
         <activity android:name=".Activitys.SplashActivity">
             <intent-filter>

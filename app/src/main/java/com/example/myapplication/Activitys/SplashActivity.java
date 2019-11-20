@@ -59,7 +59,7 @@ public class SplashActivity extends AppCompatActivity {
         anim1.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-
+                Log.d(TAG, "onAnimationStart: "+ pref.getString("firebaseToken", null));
             }
 
             @Override

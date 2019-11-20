@@ -104,6 +104,7 @@
                 android:text="signIn"
                 android:textColor="#FFFFFF" />
 
+
             <Button
                 android:id="@+id/btnSignUp"
                 android:layout_width="match_parent"

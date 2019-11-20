@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
             channel.setDescription(CHANNEL_DESC);
             NotificationManager manager = getSystemService(NotificationManager.class);
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
                         // Get new Instance ID token
                         String token = task.getResult().getToken();
-                        Log.d(TAG, "onComplete: "+ token);
+                        Log.d(TAG, "onComplete: " + token);
                         // Log and toast
                         /*String msg = getString(, token);
                         Log.d(TAG, msg);
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();*/
 
         /*Log.d(TAG, "onCreate: "+pref.getString("firebaseToken", ""));*/
-       // Toast.makeText(this, ""+ pref.getString("firebaseToken", ""), Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this, ""+ pref.getString("firebaseToken", ""), Toast.LENGTH_SHORT).show();
 
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -118,15 +118,19 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         jsonPlaceHolder = retrofit.create(JsonPlaceHolder.class);
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        login.setOnClickListener(v -> {
 
-                String xEmail = email.getText().toString();
-                String xPass = password.getText().toString();
-                makeLogin(xEmail, xPass);
-            }
+            String xEmail = email.getText().toString();
+            String xPass = password.getText().toString();
+            makeLogin(xEmail, xPass);
         });
+
+        signup.setOnClickListener(v -> {
+            finish();
+            startActivity(new Intent(MainActivity.this, RegisterActivity.class));
+        });
+
+
 
     }
 
@@ -160,36 +164,16 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         getUserDetails();
-
-                    /*if (is_provider.equals("1"))
-                    {
-                        finish();
-                        startActivity(new Intent(MainActivity.this, ProviderActivity.class));
-                    }
-                    else {
-                        finish();
-                        startActivity(new Intent(MainActivity.this, MapsActivity.class));
-                    }*/
-
                     }
 
                 } catch (JSONException | IOException e) {
                     e.getMessage();
                 }
-
-                /*try {
-                    String accessToken = Jobject.getString("access_token");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }*/
-
-                //Toast.makeText(MainActivity.this,  " response code: "+ response.code(), Toast.LENGTH_SHORT).show();
-
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.d(TAG, "onFailure: "+ t.getMessage());
+                Log.d(TAG, "onFailure: " + t.getMessage());
             }
         });
     }
@@ -203,9 +187,8 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
                 if (!response.isSuccessful()) {
-                    //Toast.makeText(MainActivity.this, "Code: " + response.code(), Toast.LENGTH_LONG).show();
                     incorrect.setVisibility(View.VISIBLE);
-                    Log.d(TAG, "onResponse: "+ response.code());
+                    Log.d(TAG, "onResponse: " + response.code());
                     return;
                 }
 
@@ -217,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.putString("is_provider", Jobject.getString("is_provider"));
                     editor.commit();
 
-                    Log.d(TAG, "onResponse: "+pref.getString("is_provider", null));
+                    Log.d(TAG, "onResponse: " + pref.getString("is_provider", null));
 
                     if (Jobject.getInt("is_provider") == 1) {
                         finish();
