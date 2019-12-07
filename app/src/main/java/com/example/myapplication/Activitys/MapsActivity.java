@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -66,12 +67,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8000/api/")
+        .baseUrl("https://cuturhair.azurewebsites.net/api/")
+                //.baseUrl("http://10.0.2.2:8000/api/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(RetrofitClient.getClient())
                 .build();
 
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolder.class);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getAllProviders();
+            }
+        }, 6000);
 
         FilterMenuLayout layout = findViewById(R.id.filter_menu);
         FilterMenu menu = new FilterMenu.Builder(this)
@@ -166,8 +175,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .setIcon(BitmapDescriptorFactory.fromBitmap(smallIcon));
         mMap.addMarker(new MarkerOptions().position(amman).title("Marker in Amman"));*/
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(AmmanCenter, 12));
-
-        getAllProviders();
 
         mMap.setOnMarkerClickListener(marker -> {
 

@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 .setLenient()
                 .create();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8000/api/")
+                .baseUrl("https://cuturhair.azurewebsites.net/api/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         jsonPlaceHolder = retrofit.create(JsonPlaceHolder.class);
@@ -141,12 +141,12 @@ public class MainActivity extends AppCompatActivity {
         //Login login = new Login("userEmail@gmail.com", "password");
         Call<ResponseBody> call = jsonPlaceHolder.loginPost(email, password);
 
-        Log.d(TAG, "makeLogin: " + email + password);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
                 if (!response.isSuccessful()) {
+                    Log.d(TAG, "onResponse: "+ response.code());
                     //Toast.makeText(MainActivity.this, "Code: " + response.code(), Toast.LENGTH_LONG).show();
                     incorrect.setVisibility(View.VISIBLE);
                     return;

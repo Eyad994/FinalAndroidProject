@@ -57,12 +57,12 @@ public class RegisterActivity extends AppCompatActivity {
                 .setLenient()
                 .create();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8000/api/")
+                .baseUrl("https://cuturhair.azurewebsites.net/api/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         jsonPlaceHolder = retrofit.create(JsonPlaceHolder.class);
 
-
+        Log.d(TAG, "makeRegister: "+pref.getString("firebaseToken", null));
         login.setOnClickListener(v ->{
             finish();
             startActivity(new Intent(RegisterActivity.this, MainActivity.class));
@@ -81,6 +81,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void makeRegister(String email, String password, String userName)
     {
         String deviceToken = pref.getString("firebaseToken", null);
+
         Call<ResponseBody> call = jsonPlaceHolder.register(email, password, password, userName, deviceToken);
 
         call.enqueue(new Callback<ResponseBody>() {
@@ -89,7 +90,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if (!response.isSuccessful()) {
                     //Toast.makeText(MainActivity.this, "Code: " + response.code(), Toast.LENGTH_LONG).show();
-                    Log.d(TAG, "onResponse: "+ response.message());
+                    Log.d(TAG, "onResponse: "+ response.body());
                     incorrect.setVisibility(View.VISIBLE);
                     return;
                 }

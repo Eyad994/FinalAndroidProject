@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/background"
+    android:background="@color/whiteMaybe"
     tools:context="com.example.myapplication.Activitys.MainActivity">
 
     <ScrollView
@@ -26,11 +26,10 @@
                 android:id="@+id/ivLogLogo"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-
                 android:layout_marginBottom="55dp"
                 android:layout_marginTop="18dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/logo" />
+                android:src="@drawable/na3emanarabic" />
 
 
             <TextView

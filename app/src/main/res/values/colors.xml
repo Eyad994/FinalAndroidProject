@@ -10,6 +10,8 @@
     <color name="whitLig">#E0D7D7</color>
     <color name="lightBlack">#272626</color>
     <color name="black">#0C0C0C</color>
+    <color name="whiteMaybe">#E2DBDB</color>
     <color name="gold">#d4af37</color>
+
 
 </resources>

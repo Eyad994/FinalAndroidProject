@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/whiteMaybe"
     tools:context="com.example.myapplication.Activitys.SplashActivity">
 
     <ImageView
         android:id="@+id/ivLogoSplash"
-        android:layout_width="380dp"
-        android:layout_height="400dp"
+        android:layout_width="wrap_content"
+        android:layout_height="350dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="180dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/naemaa" />
+        app:srcCompat="@drawable/na3eman" />
 
     <ImageView
         android:id="@+id/ivCHTtext"

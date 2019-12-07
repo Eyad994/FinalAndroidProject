@@ -48,7 +48,7 @@ public class ProviderActivity extends AppCompatActivity {
         mReserveList = new ArrayList<>();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8000/api/")
+                .baseUrl("https://cuturhair.azurewebsites.net/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
