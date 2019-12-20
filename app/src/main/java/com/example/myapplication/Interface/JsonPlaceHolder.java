@@ -67,4 +67,11 @@ public interface JsonPlaceHolder {
             @Field("provider_id") String provider_id,
             @Field("user_id") String user_id
     );
+
+    @FormUrlEncoded
+    @POST("updateDeviceToken")
+    Call<ResponseBody> updateDeviceToken(
+            @Field("id") String id,
+            @Field("device_token") String device_token
+    );
 }

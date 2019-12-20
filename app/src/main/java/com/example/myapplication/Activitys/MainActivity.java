@@ -164,11 +164,36 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         getUserDetails();
+
                     }
 
                 } catch (JSONException | IOException e) {
                     e.getMessage();
                 }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+    }
+
+    private void updateDeviceToken() {
+
+        Call<ResponseBody> call = jsonPlaceHolder.updateDeviceToken(pref.getString("id", null), pref.getString("firebaseToken", null));
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if (!response.isSuccessful()) {
+                    Log.d(TAG, "onResponse: " + response.code());
+                    return;
+                }
+
+                Log.d(TAG, "onResponse: "+ response.body());
+
             }
 
             @Override
@@ -193,12 +218,17 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 try {
+
                     Jobject = new JSONObject(response.body().string());
+
+
                     editor.putString("email", Jobject.getString("email"));
                     editor.putString("id", Jobject.getString("id"));
                     editor.putString("name", Jobject.getString("name"));
                     editor.putString("is_provider", Jobject.getString("is_provider"));
                     editor.commit();
+
+                    updateDeviceToken();
 
                     Log.d(TAG, "onResponse: " + pref.getString("is_provider", null));
 

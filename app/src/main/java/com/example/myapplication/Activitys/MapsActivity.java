@@ -75,12 +75,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolder.class);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                getAllProviders();
-            }
-        }, 6000);
+        getAllProviders();
+
 
         FilterMenuLayout layout = findViewById(R.id.filter_menu);
         FilterMenu menu = new FilterMenu.Builder(this)
