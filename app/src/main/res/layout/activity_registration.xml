@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gray_background_image"
+    android:background="@drawable/x1"
     android:orientation="vertical">
 
     <LinearLayout
@@ -23,7 +23,7 @@
             android:layout_marginTop="16dp"
             android:text="Na3"
             android:textSize="40pt"
-            android:textColor="#0575E6"
+            android:textColor="#89216B"
             android:textAlignment="center"
             android:fontFamily="@font/glastonbury"
             android:layout_marginBottom="350dp"
@@ -39,7 +39,7 @@
             android:layout_marginTop="16dp"
             android:text="eman"
             android:textSize="40pt"
-            android:textColor="#69f8e4"
+            android:textColor="#DA4453"
             android:textAlignment="center"
             android:fontFamily="@font/glastonbury"
             android:layout_marginBottom="350dp"
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/dusty"
             android:text="Join "
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="12pt" />
 
         <TextView
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/dusty"
             android:text="Us"
-            android:textColor="#69f8e4"
+            android:textColor="#DA4453"
             android:textSize="12pt" />
     </LinearLayout>
 
@@ -160,7 +160,7 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@drawable/btnsignin_gradient"
+        android:background="@drawable/btnsignup_gradient"
         android:text="Sign Up"
         android:textColor="@color/white"
         android:textSize="8pt"
@@ -186,7 +186,7 @@
             android:text="Already member? "
             android:textSize="8pt"
             android:fontFamily="@font/dusty"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="@id/signUp"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@id/signUp"
@@ -199,7 +199,7 @@
             android:text="Sign In"
             android:textSize="8pt"
             android:fontFamily="@font/dusty"
-            android:textColor="#69f8e4"
+            android:textColor="#DA4453"
             app:layout_constraintEnd_toEndOf="@id/signUp"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@id/signUp"
