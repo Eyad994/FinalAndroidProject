@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gray_background_image"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/ivLogLogo"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="91dp"
+        android:layout_marginBottom="57dp"
+        app:layout_constraintBottom_toTopOf="@+id/atvEmailLog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/na3emanarabic" />
+
+
+    <EditText
+        android:id="@+id/atvEmailLog"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_rect"
+        android:drawableStart="@drawable/icon_person"
+        android:drawableLeft="@drawable/icon_person"
+        android:drawablePadding="10dp"
+        android:hint="Email"
+        android:fontFamily="@font/dusty"
+        android:inputType="textEmailAddress"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/atvPasswordLog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivLogLogo" />
+
+    <EditText
+        android:id="@+id/atvPasswordLog"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/rounded_rect"
+        android:drawableStart="@drawable/icon_password"
+        android:drawableLeft="@drawable/icon_password"
+        android:drawablePadding="10dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
+        android:fontFamily="@font/dusty"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignIn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/atvEmailLog" />
+
+    <Button
+        android:id="@+id/btnSignIn"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/btnsignin_gradient"
+        android:text="Sign In"
+        android:textSize="9pt"
+        android:textColor="@color/whiteMaybe"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/atvPasswordLog" />
+
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="63dp"
+        android:background="@drawable/btnsignup_gradient"
+        android:text="Sign Up"
+        android:textSize="9pt"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignIn" />
+
+    <TextView
+        android:id="@+id/tvIncorrectPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Incorrect email or password"
+        android:textColor="@color/red"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/atvPasswordLog"
+        app:layout_constraintEnd_toEndOf="@id/btnSignIn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/btnSignIn"
+        app:layout_constraintTop_toTopOf="@id/btnSignIn"
+        app:layout_constraintVertical_bias="0.663" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/ivLogLogo"
+        app:layout_constraintEnd_toStartOf="@+id/ivLogLogo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivLogLogo"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dusty"
+            android:text="Sign "
+            android:textColor="@color/white"
+            android:textSize="12pt"
+            app:layout_constraintTop_toBottomOf="@+id/ivLogLogo"
+            app:layout_constraintEnd_toStartOf="@+id/ivLogLogo"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/ivLogLogo"
+            tools:layout_editor_absoluteY="380dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dusty"
+            android:text="In "
+            android:textColor="#69f8e4"
+            android:textSize="12pt"
+            app:layout_constraintTop_toBottomOf="@+id/ivLogLogo"
+            app:layout_constraintEnd_toStartOf="@+id/ivLogLogo"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/ivLogLogo"
+            tools:layout_editor_absoluteY="380dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
