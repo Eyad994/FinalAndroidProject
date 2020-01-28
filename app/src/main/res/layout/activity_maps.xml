@@ -6,6 +6,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Activitys.MapsActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        app:titleTextColor="@color/white"
+        app:subtitleTextColor="@color/white"
+        android:background="@color/colorPrimary"/>
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:map="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -20,6 +28,7 @@
         android:id="@+id/filter_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:elevation="8dp"
         app:fm_expandedRadius="96dp"
         app:fm_collapsedRadius="24dp"
@@ -27,10 +36,9 @@
         app:fm_centerRight="50dp"
         app:fm_primaryColor="#ff37aa4a"
         app:fm_primaryDarkColor="#ff20622b">
+
+
     </com.linroid.filtermenu.library.FilterMenuLayout>
-
-
-
 
     <!--<com.hitomi.cmlibrary.CircleMenu-->
     <!--android:id="@+id/circle_menu"-->

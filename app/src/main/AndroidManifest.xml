@@ -47,7 +47,11 @@
 
         <activity
             android:name=".Activitys.MapsActivity"
-            android:label="@string/title_activity_maps" />
+            android:label="@string/title_activity_maps">
+        </activity>
+
+        <!--android:theme="@style/MapsTheme"-->
+
         <activity android:name=".Activitys.MainActivity" />
 
         <service android:name=".FirebaseServices.FirebaseInstanceIDService">

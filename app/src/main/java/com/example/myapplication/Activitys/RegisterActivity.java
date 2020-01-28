@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Interface.JsonPlaceHolder;
+import com.example.myapplication.Progressbar.ProgressBar;
 import com.example.myapplication.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -38,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
     private static final String TAG = "RegisterActivity";
     private SharedPreferences pref;
     JSONObject Jobject;
-
+    ProgressBar progressBar = new ProgressBar();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
 
         userName = findViewById(R.id.atvUsernameReg);
-        email = findViewById(R.id.atvEmailReg);
+        email = findViewById(R.id.et_email_reg);
         password = findViewById(R.id.atvPasswordReg);
         register = findViewById(R.id.signUp);
         login = findViewById(R.id.tvSignIn);
@@ -73,7 +74,14 @@ public class RegisterActivity extends AppCompatActivity {
             String xPass = password.getText().toString();
             String xUserName = userName.getText().toString();
 
-            makeRegister(xEmail, xPass, xUserName);
+            if (!xEmail.equals("") && !xPass.equals("") && !xUserName.equals(""))
+            {
+                progressBar.showProgress(RegisterActivity.this);
+                makeRegister(xEmail, xPass, xUserName);
+            }
+            else {
+                incorrect.setVisibility(View.VISIBLE);
+            }
         });
 
     }
@@ -91,6 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (!response.isSuccessful()) {
                     //Toast.makeText(MainActivity.this, "Code: " + response.code(), Toast.LENGTH_LONG).show();
                     Log.d(TAG, "onResponse: "+ response.body());
+                    progressBar.dismissProgress();
                     incorrect.setVisibility(View.VISIBLE);
                     return;
                 }
@@ -99,6 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
                     assert response.body() != null;
                     Jobject = new JSONObject(response.body().string());
                     if (response.code() == 201) {
+                        progressBar.dismissProgress();
                         finish();
                         Toast.makeText(RegisterActivity.this, "Registration successfully", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(RegisterActivity.this, MainActivity.class));
@@ -111,6 +121,8 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                progressBar.dismissProgress();
+                Toast.makeText(RegisterActivity.this, "Connection Failed", Toast.LENGTH_LONG).show();
                 Log.d(TAG, "onFailure: " + t.getMessage());
             }
         });

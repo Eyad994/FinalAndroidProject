@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
@@ -78,6 +79,11 @@ public class ReserveAdapter extends RecyclerView.Adapter<ReserveAdapter.ReserveV
             holder.mTextViewApproved.setText("Pending");
             holder.mTextViewApproved.setTextColor(Color.BLUE);
         }
+
+        holder.directions.setOnTouchListener((v, event) -> {
+            v.startAnimation(AnimationUtils.loadAnimation(mContext, R.anim.image_click));
+            return false;
+        });
 
         holder.directions.setOnClickListener(v -> {
             v.startAnimation(AnimationUtils.loadAnimation(mContext, R.anim.image_click));

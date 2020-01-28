@@ -1,5 +1,8 @@
 package com.example.myapplication.Activitys;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -7,14 +10,23 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.myapplication.DialogMap;
 import com.example.myapplication.Interface.JsonPlaceHolder;
 import com.example.myapplication.Models.Provider;
+import com.example.myapplication.Progressbar.ProgressBar;
 import com.example.myapplication.R;
 import com.example.myapplication.RetrofitClient.RetrofitClient;
 import com.example.myapplication.UserActivity;
@@ -25,6 +37,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.linroid.filtermenu.library.FilterMenu;
@@ -43,31 +56,39 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, DialogMap.ExampleDialogListener {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, DialogMap.ExampleDialogListener {
 
     private static final String TAG = "MapsActivity";
     private GoogleMap mMap;
     JsonPlaceHolder jsonPlaceHolderApi;
     SharedPreferences pref;
+    SharedPreferences.Editor editor;
     String providerId;
     JSONObject Jobject;
+    Toolbar toolbar;
 
+    @SuppressLint("CommitPrefEdits")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        //((AppCompatActivity)getApplicationContext()).setSupportActionBar(toolbar);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        editor = pref.edit();
 
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
-        .baseUrl("http://10.0.2.2:8000/api/")
+                .baseUrl("http://10.0.2.2:8000/api/")
                 //.baseUrl("http://10.0.2.2:8000/api/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(RetrofitClient.getClient())
@@ -95,7 +116,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 mMap.clear();
                                 break;
                             case 2:
-                                startActivity(new Intent(MapsActivity.this, UserActivity.class));
+
+                                /*AlertDialog.Builder dialog = new AlertDialog.Builder(MapsActivity.this);
+                                dialog.setTitle("Title");
+                                dialog.setMessage("Message");
+                                dialog.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+
+                                    }
+                                });
+                                dialog.setNegativeButton("no", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                dialog.create().show();*/
+                                //startActivity(new Intent(MapsActivity.this, UserActivity.class));
                                 break;
 
                             default:
@@ -116,6 +152,43 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .build();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_filter, menu);
+        super.onCreateOptionsMenu(menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_1:
+                startActivity(new Intent(MapsActivity.this, ProfileAvtivity.class));
+                return true;
+            case R.id.action_2:
+                startActivity(new Intent(MapsActivity.this, UserActivity.class));
+                return true;
+            case R.id.action_3:
+
+                AlertDialog.Builder dialog = new AlertDialog.Builder(MapsActivity.this);
+                dialog.setTitle("Warning!");
+                dialog.setMessage("Are you sure you want to logout?");
+                dialog.setPositiveButton("yes", (dialog12, id) -> {
+                    editor.clear();
+                    editor.apply();
+                    finish();
+                    startActivity(new Intent(MapsActivity.this, MainActivity.class));
+                });
+                dialog.setNegativeButton("no", (dialog1, id) -> dialog1.dismiss());
+                dialog.create().show();
+                return true;
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     public void getAllProviders() {
         Call<List<Provider>> call = jsonPlaceHolderApi.getLatLng();
